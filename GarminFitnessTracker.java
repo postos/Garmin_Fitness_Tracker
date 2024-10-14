@@ -15,13 +15,14 @@ public class GarminFitnessTracker {
 
     public void handleActivities(){
 
-        String csvFile = "Activities.csv"; // path to your CSV file
+        String csvFile = "Activities.csv"; // path to CSV file
         String line;
         String csvSplitBy = ","; // defines the delimiter
 
         // create map to store total distance and activity count per year
         Map<Integer, YearData> yearDataMap = new HashMap<>(); 
         double bikeMilage = 0; // tracker for total miles ridden on Caad13 bicycle
+        System.out.println("----------------------------");
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             // read the header line to skip over it (columns tab)
@@ -55,12 +56,11 @@ public class GarminFitnessTracker {
                 double totalDistance = yearData.getTotalDistance(); 
                 int activityCount = yearData.getActivityCount(); 
                 double averageDistance = yearData.getAverageDistance(); 
-                bikeMilage += totalDistance; 
+                bikeMilage += totalDistance; // track the total miles ridden on the Caad13 bike
 
                 System.out.println("Year: " + year);
-                System.out.println("Total Distance: " + totalDistance + " miles");
-                System.out.println("Number of Activities: " + activityCount);
-                System.out.println("Average Distance: " + String.format("%.2f", averageDistance) + " miles");
+                System.out.printf("Total Distance: %.2f miles\n", totalDistance);
+                System.out.println("Average Ride Distance: " + String.format("%.2f", averageDistance) + " miles");
                 System.out.println("----------------------------");
             }
             System.out.println("\n-------------------------------------------");

@@ -1,4 +1,5 @@
 public class YearData{
+    
     private double totalDistance;
     private int activityCount; 
 
@@ -20,6 +21,6 @@ public class YearData{
 
     public double getAverageDistance(){
         // if activity count is 0 return it, otherwise return the average distance per ride
-        return  activityCount == 0 ? 0 : totalDistance/activityCount; 
+        return  activityCount == 0 ? 0 : totalDistance/activityCount; // ternary operator 
     }
 }
