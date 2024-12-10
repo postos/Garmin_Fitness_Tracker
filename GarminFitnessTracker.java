@@ -20,17 +20,17 @@ import java.util.Map;
 
 public class GarminFitnessTracker {
 
-// ***************************************************************
-//
-// Method:      main()
-//
-// Description: The main method of the program
-//
-// Parameters:  String array
-//
-// Returns:     N/A
-//
-// **************************************************************
+    // ***************************************************************
+    //
+    // Method:      main()
+    //
+    // Description: The main method of the program
+    //
+    // Parameters:  String array
+    //
+    // Returns:     N/A
+    //
+    // **************************************************************
     public static void main(String[] args) {
         GarminFitnessTracker obj = new GarminFitnessTracker();
         obj.handleActivities();
