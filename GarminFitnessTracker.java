@@ -1,3 +1,17 @@
+//********************************************************************
+//
+//  Developer:     Paul Ostos
+//
+//  File Name:     GarminFitnessTracker.java
+//
+//  Java Version:  "17.0.1" 2021-10-19 LTS
+//
+//  Description:   This class processes activity data from a CSV file, 
+//                 calculates yearly statistics (total distance, average 
+//                 distance), and displays the results.
+//
+//********************************************************************
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,13 +22,13 @@ public class GarminFitnessTracker {
 
 	// ***************************************************************
 	//
-	// Method: main()
+	// Method:      main()
 	//
 	// Description: The main method of the program
 	//
-	// Parameters: String array
+	// Parameters:  String array
 	//
-	// Returns: N/A
+	// Returns:     N/A
 	//
 	// **************************************************************
     public static void main(String[] args) {
@@ -23,16 +37,17 @@ public class GarminFitnessTracker {
     }
 
     // ***************************************************************
-	//
-	// Method: 
-	//
-	// Description: 
-	//
-	// Parameters: 
-	//
-	// Returns: 
-	//
-	// **************************************************************
+    //
+    // Method:      handleActivities(String csvFile)
+    //
+    // Description: Handles the overall process of parsing the CSV file and 
+    //              calculating yearly statistics.
+    //
+    // Parameters:  String csvFile - The path to the CSV file containing activity data.
+    //
+    // Returns:     N/A
+    //
+    // ***************************************************************
 
     private void handleActivities(String csvFile) {
         Map<Integer, YearData> yearDataMap = parseCSV(csvFile);
@@ -40,16 +55,17 @@ public class GarminFitnessTracker {
     }
 
     // ***************************************************************
-	//
-	// Method: 
-	//
-	// Description: 
-	//
-	// Parameters: 
-	//
-	// Returns: 
-	//
-	// **************************************************************
+    //
+    // Method:      parseCSV(String csvFile)
+    //
+    // Description: Reads the CSV file, parses each line, and updates the map 
+    //              with activity data for each year.
+    //
+    // Parameters:  String csvFile - The path to the CSV file.
+    //
+    // Returns:     Map<Integer, YearData> - A map with the year as the key and YearData as the value.
+    //
+    // ***************************************************************
 
     private Map<Integer, YearData> parseCSV(String csvFile) {
         Map<Integer, YearData> yearDataMap = new HashMap<>();
@@ -72,16 +88,18 @@ public class GarminFitnessTracker {
     }
 
     // ***************************************************************
-	//
-	// Method: 
-	//
-	// Description: 
-	//
-	// Parameters: 
-	//
-	// Returns: 
-	//
-	// **************************************************************
+    //
+    // Method:      processActivityData(String[] data, Map<Integer, YearData> yearDataMap)
+    //
+    // Description: Processes a single activity entry, extracts the year, 
+    //              and updates the yearDataMap with the total distance and activity count.
+    //
+    // Parameters:  String[] data - The data from a single CSV line.
+    //              Map<Integer, YearData> yearDataMap - The map storing activity data by year.
+    //
+    // Returns:     N/A
+    //
+    // ***************************************************************
 
     private void processActivityData(String[] data, Map<Integer, YearData> yearDataMap) {
         String date = data[1];
@@ -100,16 +118,17 @@ public class GarminFitnessTracker {
     }
 
     // ***************************************************************
-	//
-	// Method: 
-	//
-	// Description: 
-	//
-	// Parameters: 
-	//
-	// Returns: 
-	//
-	// **************************************************************
+    //
+    // Method:      YearlyStats(Map<Integer, YearData> yearDataMap)
+    //
+    // Description: Processes and displays the yearly statistics for total 
+    //              distance, average distance, and overall bike mileage.
+    //
+    // Parameters:  Map<Integer, YearData> yearDataMap - The map containing data for each year.
+    //
+    // Returns:     N/A
+    //
+    // ***************************************************************
 
     private void YearlyStats(Map<Integer, YearData> yearDataMap) {
         double bikeMilage = 0;
@@ -122,42 +141,47 @@ public class GarminFitnessTracker {
             double averageDistance = yearData.getAverageDistance();
 
             bikeMilage += totalDistance;
-            displayYearlyStats(year, totalDistance, averageDistance);
+            displayYearlyStats(year, totalDistance, averageDistance, activityCount);
         }
         displayTotalMiles(bikeMilage);
     }
 
     // ***************************************************************
-	//
-	// Method: 
-	//
-	// Description: 
-	//
-	// Parameters: 
-	//
-	// Returns: 
-	//
-	// **************************************************************
+    //
+    // Method:      displayYearlyStats(int year, double totalDistance, double averageDistance)
+    //
+    // Description: Displays the statistics for a given year, including the 
+    //              total distance and average distance per activity.
+    //
+    // Parameters:  int year - The year for which stats are displayed.
+    //              double totalDistance - The total distance for the year.
+    //              double averageDistance - The average distance per activity for the year.
+    //              int activityCount - The total count of activities for the year.
+    //
+    // Returns:     N/A
+    //
+    // ***************************************************************
 
-    public void displayYearlyStats(int year, double totalDistance, double averageDistance){
+    public void displayYearlyStats(int year, double totalDistance, double averageDistance, int activityCount){
         System.out.println("----------------------------");
         System.out.println("Year: " + year);
         System.out.printf("Total Distance: %.2f miles\n", totalDistance);
+        System.out.println("Total Activities: " + activityCount);
         System.out.println("Average Ride Distance: " + String.format("%.2f", averageDistance) + " miles");
         System.out.println("----------------------------");
     }
 
     // ***************************************************************
-	//
-	// Method: 
-	//
-	// Description: 
-	//
-	// Parameters: 
-	//
-	// Returns: 
-	//
-	// **************************************************************
+    //
+    // Method:      displayTotalMiles(double bikeMilage)
+    //
+    // Description: Displays the total miles ridden on the Caad13 bicycle.
+    //
+    // Parameters:  double bikeMilage - The total miles ridden on the bicycle.
+    //
+    // Returns:     N/A
+    //
+    // ***************************************************************
 
     public void displayTotalMiles(double bikeMilage){
         System.out.println("\n-------------------------------------------");
