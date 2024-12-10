@@ -33,7 +33,7 @@ public class GarminFitnessTracker {
 	// **************************************************************
     public static void main(String[] args) {
         GarminFitnessTracker obj = new GarminFitnessTracker();
-        obj.handleActivities("Activities.csv");
+        obj.handleActivities();
     }
 
     // ***************************************************************
@@ -49,7 +49,8 @@ public class GarminFitnessTracker {
     //
     // ***************************************************************
 
-    private void handleActivities(String csvFile) {
+    private void handleActivities() {
+        String csvFile = "Activities.csv"; 
         Map<Integer, YearData> yearDataMap = parseCSV(csvFile);
         YearlyStats(yearDataMap);
     }
